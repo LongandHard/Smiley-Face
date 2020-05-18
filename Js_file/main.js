@@ -6,7 +6,7 @@ const height = +svg.attr('height');
 const g = svg.append('g')
   .attr('transform', 'translate(500, 250)');
 
-
+// the 'circle' creates a circle, its not just a name
 const circle = g.append('circle')
   .attr('r', height/2)
   .attr('stroke', 'black')
@@ -16,19 +16,31 @@ const eyeSpacing = 100;
 const eyeYoffset = 70;
 const eyeSize = 30;
 
-const leftEye = g.append('circle')
+const eyesG = g.append('g')
+  .attr('transform', 'translate(0, -70)');
+  
+const eyeBrowWidth = 50;
+const eyeBrowHeight = 15;
+  
+const leftEyebrow = eyesG.append('rect')
+  .attr('x', -eyeSpacing - eyeBrowWidth/2)
+  .attr('y', -50)
+  .attr('width', eyeBrowWidth)
+  .attr('height', eyeBrowHeight)
+
+const rightEyebrow = eyesG.append('rect')
+  .attr('x', eyeSpacing - eyeBrowWidth/2)
+  .attr('y', -50)
+  .attr('width', eyeBrowWidth)
+  .attr('height', eyeBrowHeight)
+
+const leftEye = eyesG.append('circle')
   .attr('r', eyeSize)
   .attr('cx', -eyeSpacing)
-  .attr('cy',  -eyeYoffset)
-  .attr('fill', 'black')
 
-const rightEye = g.append('circle')
+const rightEye = eyesG.append('circle')
   .attr('r', eyeSize)
   .attr('cx', eyeSpacing)
-  .attr('cy',  -eyeYoffset)
-  .attr('fill', 'black')
-
-console.log(g)
 
 const mouth = g.append('path')
   .attr('d', d3.arc()({
@@ -37,3 +49,4 @@ const mouth = g.append('path')
     startAngle: Math.PI/2,
     endAngle: Math.PI*3/2
   }))
+
