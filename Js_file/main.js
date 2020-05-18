@@ -21,18 +21,23 @@ const eyesG = g.append('g')
   
 const eyeBrowWidth = 50;
 const eyeBrowHeight = 15;
+const eyeBrownYoffset = -50;
   
 const leftEyebrow = eyesG.append('rect')
   .attr('x', -eyeSpacing - eyeBrowWidth/2)
-  .attr('y', -50)
+  .attr('y', eyeBrownYoffset)
   .attr('width', eyeBrowWidth)
   .attr('height', eyeBrowHeight)
 
 const rightEyebrow = eyesG.append('rect')
   .attr('x', eyeSpacing - eyeBrowWidth/2)
-  .attr('y', -50)
+  .attr('y', eyeBrownYoffset)
   .attr('width', eyeBrowWidth)
   .attr('height', eyeBrowHeight)
+  .transition().duration(1000)
+    .attr('y', eyeBrownYoffset -30)
+  .transition().duration(1000)
+    .attr('y', eyeBrownYoffset)
 
 const leftEye = eyesG.append('circle')
   .attr('r', eyeSize)
@@ -49,4 +54,3 @@ const mouth = g.append('path')
     startAngle: Math.PI/2,
     endAngle: Math.PI*3/2
   }))
-
